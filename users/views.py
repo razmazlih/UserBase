@@ -21,8 +21,8 @@ class UserProfileView(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        return self.queryset.filter(id=self.request.user.id)
+    def get_object(self):
+        return self.request.user
 
 
 class CreateUserView(CreateAPIView):
