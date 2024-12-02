@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Endpoints</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>רשימת הנתיבים של ה-API</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>תיאור</th>
+                <th>נתיב מלא</th>
+                <th>שיטה</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>מחזיר מידע על פרופיל המשתמש המחובר</td>
+                <td>/api/users/profile/</td>
+                <td>GET</td>
+            </tr>
+            <tr>
+                <td>יוצר משתמש חדש במערכת</td>
+                <td>/api/users/register/</td>
+                <td>POST</td>
+            </tr>
+            <tr>
+                <td>משנה את הסיסמה של המשתמש המחובר</td>
+                <td>/api/users/change-password/</td>
+                <td>POST</td>
+            </tr>
+            <tr>
+                <td>משנה את שם המשתמש של המשתמש המחובר</td>
+                <td>/api/users/change-username/</td>
+                <td>POST</td>
+            </tr>
+            <tr>
+                <td>מקבל טוקן גישה (JWT) עבור התחברות</td>
+                <td>/api/login/</td>
+                <td>POST</td>
+            </tr>
+            <tr>
+                <td>רענון טוקן גישה בעזרת טוקן רענון</td>
+                <td>/api/refresh/</td>
+                <td>POST</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
