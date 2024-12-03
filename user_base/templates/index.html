@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="he">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,29 +14,36 @@
             margin: 0;
             padding: 20px;
         }
+
         h1 {
             color: #333;
             text-align: center;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
             background-color: #fff;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ccc;
             padding: 10px;
             text-align: left;
         }
+
         th {
             background-color: #f2f2f2;
         }
+
         tr:hover {
             background-color: #f1f1f1;
         }
     </style>
 </head>
+
 <body>
     <h1>רשימת הנתיבים של ה-API</h1>
     <table>
@@ -44,40 +52,126 @@
                 <th>תיאור</th>
                 <th>נתיב מלא</th>
                 <th>שיטה</th>
+                <th>Header</th>
+                <th>Body</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>מחזיר מידע על פרופיל המשתמש המחובר</td>
+                <td>מחזיר מידע על פרופיל המשתמש</td>
                 <td>/api/users/profile/</td>
                 <td>GET</td>
+                <td>
+                    <code>
+                        Authorization: Bearer {jwt-token}<br>
+                        Content-Type: application/json
+                    </code>
+                </td>
+                <td>לא נדרש</td>
+            </tr>
+            <tr>
+                <td>מעודכן את פרטי פרופיל המשתמש</td>
+                <td>/api/users/profile/</td>
+                <td>PUT</td>
+                <td>
+                    <code>
+                        Authorization: Bearer {jwt-token}<br>
+                        Content-Type: application/json
+                    </code>
+                </td>
+                <td>
+                    <pre>
+            {
+                "phone_number": "0505050505",
+                "city": "אשדוד",
+                "street_name": "מנחם בגין",
+                "house_number": 5
+            }
+                    </pre>
+                </td>
             </tr>
             <tr>
                 <td>יוצר משתמש חדש במערכת</td>
                 <td>/api/users/register/</td>
                 <td>POST</td>
+                <td><code>Content-Type: application/json</code></td>
+                <td>
+                    <pre>
+                        {
+                            "username": "example",
+                            "password": "Password123",
+                            "phone_number": "0505050505",
+                            "city": "example",
+                            "street_name": "example"
+                          }
+                    </pre>
+                </td>
             </tr>
             <tr>
                 <td>משנה את הסיסמה של המשתמש המחובר</td>
                 <td>/api/users/change-password/</td>
-                <td>POST</td>
+                <td>PUT</td>
+                <td>
+                    <code>
+                        Authorization: Bearer {jwt-token}<br>
+                        Content-Type: application/json
+                    </code>
+                </td>
+                <td>
+                    <pre>
+    {
+        "new_password": "Password123!"
+    }
+                    </pre>
+                </td>
             </tr>
             <tr>
                 <td>משנה את שם המשתמש של המשתמש המחובר</td>
                 <td>/api/users/change-username/</td>
-                <td>POST</td>
+                <td>PUT</td>
+                <td>
+                    <code>
+                        Authorization: Bearer {jwt-token}<br>
+                        Content-Type: application/json
+                    </code>
+                </td>
+                <td>
+                    <pre>
+    {
+        "new_username": "new_username"
+    }
+                    </pre>
+                </td>
             </tr>
             <tr>
                 <td>מקבל טוקן גישה (JWT) עבור התחברות</td>
                 <td>/api/login/</td>
                 <td>POST</td>
+                <td><code>Content-Type: application/json</code></td>
+                <td>
+                    <pre>
+    {
+        "username": "example",
+        "password": "Password123!"
+    }
+                    </pre>
+                </td>
             </tr>
             <tr>
                 <td>רענון טוקן גישה בעזרת טוקן רענון</td>
                 <td>/api/refresh/</td>
                 <td>POST</td>
+                <td><code>Content-Type: application/json</code></td>
+                <td>
+                    <pre>
+    {
+        "refresh": "{refresh-token}"
+    }
+                    </pre>
+                </td>
             </tr>
         </tbody>
     </table>
 </body>
+
 </html>
