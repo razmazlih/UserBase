@@ -70,6 +70,24 @@
                 <td>לא נדרש</td>
             </tr>
             <tr>
+                <td>יוצר משתמש חדש במערכת</td>
+                <td>/api/users/register/</td>
+                <td>POST</td>
+                <td><code>Content-Type: application/json</code></td>
+                <td>
+                    <pre>
+                        {
+                            "username": "example",
+                            "password": "Password123",
+                            "phone_number": "0505050505",
+                            "city": "city name",
+                            "street_name": "street name",
+                            "house_number": 1
+                          }
+                    </pre>
+                </td>
+            </tr>
+            <tr>
                 <td>מעודכן את פרטי פרופיל המשתמש</td>
                 <td>/api/users/profile/</td>
                 <td>PUT</td>
@@ -83,27 +101,10 @@
                     <pre>
             {
                 "phone_number": "0505050505",
-                "city": "אשדוד",
-                "street_name": "מנחם בגין",
-                "house_number": 5
+                "city": "city name update",
+                "street_name": "street name update",
+                "house_number": 2
             }
-                    </pre>
-                </td>
-            </tr>
-            <tr>
-                <td>יוצר משתמש חדש במערכת</td>
-                <td>/api/users/register/</td>
-                <td>POST</td>
-                <td><code>Content-Type: application/json</code></td>
-                <td>
-                    <pre>
-                        {
-                            "username": "example",
-                            "password": "Password123",
-                            "phone_number": "0505050505",
-                            "city": "example",
-                            "street_name": "example"
-                          }
                     </pre>
                 </td>
             </tr>
