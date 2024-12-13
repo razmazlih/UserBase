@@ -17,13 +17,13 @@ services:
     networks:
       - users_network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_DB}"]
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_DB}" ]
       interval: 5s
       timeout: 2s
       retries: 5
 
   backend:
-  
+
     # build:
     #   context: .
     #   dockerfile: Dockerfile
@@ -61,6 +61,7 @@ services:
 
 volumes:
   postgres_users:
+
 
 networks:
   users_network:
