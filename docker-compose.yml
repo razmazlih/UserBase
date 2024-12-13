@@ -17,7 +17,7 @@ services:
     networks:
       - users_network
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_DB}" ]
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} -h localhost" ]
       interval: 5s
       timeout: 2s
       retries: 5
