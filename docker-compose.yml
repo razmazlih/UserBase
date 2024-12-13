@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_users_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_users:/var/lib/postgresql/data
+    networks:
+      - users_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: userbase_backend
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
+      DEBUG: ${DEBUG}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
+
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: "db"
+      POSTGRES_PORT: 5432
+
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             gunicorn -b 0.0.0.0:8000 user_base.wsgi:application"
+    ports:
+      - "8001:8000"
+    networks:
+      - users_network
+    volumes:
+      - .:/app
+
+volumes:
+  postgres_users:
+
+networks:
+  users_network:
+    driver: bridge
