@@ -9,7 +9,8 @@ UserBase is a Django project for user management with a RESTful API, including f
 - [System Requirements](#system-requirements)
 - [Installation](#installation)
 - [Local Run](#local-run)
-- [Run with Gunicorn](#run-with-gunicorn)
+- [Run with Docker](#run-with-docker)
+- [Run with Docker Compose](#run-with-docker-compose)
 - [.env File](#env-file)
 - [API Endpoints](#api-endpoints)
 
@@ -19,8 +20,9 @@ UserBase is a Django project for user management with a RESTful API, including f
 - Python 3.8+
 - Django 4.0+
 - Gunicorn (for production)
+- Docker & Docker Compose
 - CORS Headers (for frontend integration)
-- MySQL/PostgreSQL or SQLite (your choice)
+- PostgreSQL or SQLite (your choice)
 
 ---
 
@@ -74,11 +76,40 @@ http://127.0.0.1:8000
 
 ---
 
-## Run with Gunicorn
-To run in production mode using Gunicorn:
-```bash
-gunicorn user_base.wsgi:application --bind 0.0.0.0:8000 --daemon
-```
+## Run with Docker
+To run the project using Docker:
+
+1. Build the Docker image:
+   ```bash
+   docker build -t userbase .
+   ```
+
+2. Run the Docker container:
+   ```bash
+   docker run -d -p 8000:8000 --env-file .env userbase
+   ```
+
+3. The application will be accessible at:
+   ```
+   http://127.0.0.1:8000
+   ```
+
+---
+
+## Run with Docker Compose
+Alternatively, you can use `docker-compose` for easier setup:
+
+1. Ensure the `docker-compose.yml` file is present in the project root.
+
+2. Run the application using `docker-compose`:
+   ```bash
+   docker-compose up -d
+   ```
+
+3. Access the application at:
+   ```
+   http://127.0.0.1:8001
+   ```
 
 ---
 
@@ -89,6 +120,11 @@ SECRET_KEY=your_secret_key
 DEBUG=True
 ALLOWED_HOSTS=127.0.0.1,localhost
 CORS_ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+POSTGRES_USER=your_postgres_user
+POSTGRES_PASSWORD=your_postgres_password
+POSTGRES_DB=your_postgres_db
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
 ```
 
 ---
