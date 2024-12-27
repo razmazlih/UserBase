@@ -5,8 +5,6 @@ services:
     image: postgres:15
     container_name: postgres_users_db
 
-    # env_file:
-    #   - .env
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -24,15 +22,10 @@ services:
 
   backend:
 
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
     image: razmaz112/userbase-docker-app:latest
 
     container_name: userbase_backend
 
-    # env_file:
-    #   - .env
     environment:
       SECRET_KEY: ${SECRET_KEY}
       DEBUG: ${DEBUG}
